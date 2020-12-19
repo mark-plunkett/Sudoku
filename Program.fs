@@ -19,7 +19,7 @@ let isValid row col (board:Board) =
     let uniqueOrZero =
         Seq.groupBy id
         >> Seq.forall (fun (v, g) -> v = 0 || Seq.length g = 1)
-
+        
     let rowValid (board:Board) = 
         board.[row]
         |> Map.toSeq
@@ -47,7 +47,6 @@ let isValid row col (board:Board) =
     && squareValid board
 
 let rec solve size row col (board:Board) =
-
     if row = size - 1 && col = size then
         Some board
     else if col = size then
@@ -67,16 +66,27 @@ let main argv =
 
     let inline listToMap list = list |> List.indexed |> Map.ofList
     let listToBoard = (List.map listToMap) >> listToMap
+    //let board = listToBoard [
+        //[3; 0; 6; 5; 0; 8; 4; 0; 0]
+        //[5; 2; 0; 0; 0; 0; 0; 0; 0]
+        //[0; 8; 7; 0; 0; 0; 0; 3; 1]
+        //[0; 0; 3; 0; 1; 0; 0; 8; 0]
+        //[9; 0; 0; 8; 6; 3; 0; 0; 5]
+        //[0; 5; 0; 0; 9; 0; 6; 0; 0]
+        //[1; 3; 0; 0; 0; 0; 2; 5; 0]
+        //[0; 0; 0; 0; 0; 0; 0; 7; 4]
+        //[0; 0; 5; 2; 0; 6; 3; 0; 0]
+    //]
     let board = listToBoard [
-        [3; 0; 6; 5; 0; 8; 4; 0; 0]
-        [5; 2; 0; 0; 0; 0; 0; 0; 0]
-        [0; 8; 7; 0; 0; 0; 0; 3; 1]
-        [0; 0; 3; 0; 1; 0; 0; 8; 0]
-        [9; 0; 0; 8; 6; 3; 0; 0; 5]
-        [0; 5; 0; 0; 9; 0; 6; 0; 0]
-        [1; 3; 0; 0; 0; 0; 2; 5; 0]
-        [0; 0; 0; 0; 0; 0; 0; 7; 4]
-        [0; 0; 5; 2; 0; 6; 3; 0; 0]
+        [ 0; 0; 0; 0; 0; 0; 0; 0; 0; ]
+        [ 0; 0; 0; 0; 0; 0; 0; 0; 0; ]
+        [ 0; 0; 0; 0; 0; 0; 0; 0; 0; ]
+        [ 0; 0; 0; 0; 0; 0; 0; 0; 0; ]
+        [ 0; 0; 0; 0; 0; 0; 0; 0; 0; ]
+        [ 0; 5; 0; 3; 0; 8; 0; 2; 0; ]
+        [ 2; 0; 5; 0; 3; 0; 6; 0; 9; ]
+        [ 0; 9; 0; 4; 0; 6; 0; 1; 0; ]
+        [ 0; 0; 0; 0; 0; 0; 0; 0; 0; ]
     ]
 
     match solver board with
